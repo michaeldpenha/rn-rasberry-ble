@@ -159,7 +159,7 @@ const Rassberry = (props) => {
     //   return;
     // }
 
-    console.log('Device name', deviceName);
+    console.log('Device name', instance);
     instance.startDeviceScan(null, null, (error, device) => {
       console.log('Scan', device);
       if (error) {
