@@ -151,6 +151,7 @@ const Rassberry = (props) => {
       });
   };
   const scanAndConnect = async (deviceName) => {
+    console.log('Device name', deviceName);
     if(!deviceName){
       return;
     }
