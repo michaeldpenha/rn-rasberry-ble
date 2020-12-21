@@ -138,7 +138,7 @@ const Rassberry = (props) => {
         return device.discoverAllServicesAndCharacteristics();
       })
       .then((device) => {
-        Alert.alert('Rasberry Device connected');
+       console.log('Rasberry Device connected');
         // Do work on device with services and characteristics
         setServicesFromDevice(device);
         EventRegister.emit('rassberry_connect');

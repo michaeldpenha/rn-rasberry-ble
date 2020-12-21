@@ -29,9 +29,11 @@ const App: () => React$Node = () => {
   const [display, setDisplay] = useState(false);
   const [chars, setCharacters] = useState('');
   const [showActivity, setActiivity] = useState(false);
+  const [device, setDeviceName] = useState('');
 
   const onBLEDeviceConnection = () => {
     EventRegister.emit('connect_device', text);
+    setDeviceName(text);
     setActiivity(true);
     setText('');
   };
@@ -53,7 +55,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       {
-      !!text && <Rassberry deviceName={text}/>
+      !!device && <Rassberry deviceName={device}/>
       }
       <SafeAreaView>
         <ScrollView
