@@ -10,11 +10,13 @@ const Rassberry = (props) => {
   const [writeCharacteristic, setWriteCharacteristic] = useState({});
   const [caharacteristicId, setCharacteristicId] = useState('');
   const [serviceId, setServiceID] = useState('');
+  const [deviceName, setDeviceScan] = useState('');
   // const [device, setDeviceConnection] = useState({});
 
   useEffect(() => {
     EventRegister.addEventListener('connect_device', (name) => {
-      scanAndConnect(name);
+      // scanAndConnect(name);
+      setDeviceScan(name);
     });
     (async function () {
       if (Platform.OS === 'ios') {
@@ -150,18 +152,18 @@ const Rassberry = (props) => {
         // Handle errors
       });
   };
-  const scanAndConnect = async (deviceName) => {
+  const scanAndConnect = async () => {
     
-    if(!deviceName){
-      return;
-    }
+    // if(!deviceName){
+    //   return;
+    // }
     // if (Object.keys(device).length !== 0) {
     //   return;
     // }
 
     console.log('Device name', instance);
     instance.startDeviceScan(null, null, (error, device) => {
-      console.log('Scan', device);
+      console.log('Scan', deviceName);
       if (error) {
         // Handle error (scanning will be stopped automatically)
         return;
