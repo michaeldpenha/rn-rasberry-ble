@@ -151,7 +151,7 @@ const Rassberry = (props) => {
       });
   };
   const scanAndConnect = async (deviceName) => {
-    console.log('Device name', deviceName);
+    
     if(!deviceName){
       return;
     }
@@ -159,7 +159,9 @@ const Rassberry = (props) => {
     //   return;
     // }
 
+    console.log('Device name', deviceName);
     instance.startDeviceScan(null, null, (error, device) => {
+      console.log('Scan', device);
       if (error) {
         // Handle error (scanning will be stopped automatically)
         return;
