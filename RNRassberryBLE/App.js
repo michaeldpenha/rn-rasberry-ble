@@ -23,6 +23,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {EventRegister} from 'react-native-event-listeners';
 import Rassberry from './src/components/rassberry';
 import {useEffect} from 'react';
+import { BleManager } from 'react-native-ble-plx';
 
 const App: () => React$Node = () => {
   const [text, setText] = useState('');
@@ -30,6 +31,7 @@ const App: () => React$Node = () => {
   const [chars, setCharacters] = useState('');
   const [showActivity, setActiivity] = useState(false);
   const [device, setDeviceName] = useState('');
+  const [instance, createInstance] = useState(null);
 
   const onBLEDeviceConnection = () => {
     EventRegister.emit('connect_device', text);
@@ -45,11 +47,11 @@ const App: () => React$Node = () => {
 
   useEffect(() => {
     EventRegister.addEventListener('rassberry_connect', () => {
-      console.log('Show Activity')
       setActiivity(false);
       setDisplay(true);
     });
 
+    createInstance(new BleManager());
     return () => EventRegister.removeEventListener('rassberry_connect');
   }, []);
 
@@ -57,7 +59,8 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       {
-      !!device && <Rassberry deviceName={device}/>
+        !!instance && 
+        <Rassberry instance={instance}/>
       }
       <SafeAreaView>
         <ScrollView

@@ -5,9 +5,8 @@ import {EventRegister} from 'react-native-event-listeners';
 import {BleManager} from 'react-native-ble-plx';
 
 const Rassberry = (props) => {
-  const {deviceName} = props;
-  const instance = new BleManager();
-
+  const {instance} = props;
+  
   const [writeCharacteristic, setWriteCharacteristic] = useState({});
   const [caharacteristicId, setCharacteristicId] = useState('');
   const [serviceId, setServiceID] = useState('');
@@ -16,7 +15,7 @@ const Rassberry = (props) => {
 
   useEffect(() => {
     EventRegister.addEventListener('connect_device', (name) => {
-      // scanAndConnect(name);
+      scanAndConnect(name);
       // setDeviceScan(name);
     });
     (async function () {
@@ -97,6 +96,7 @@ const Rassberry = (props) => {
                 setCharacteristicId(characteristicId);
                 setServiceID(uuid);
                 EventRegister.addEventListener('led_val', (result) => {
+                  console.log()
                   instance.writeCharacteristicWithoutResponseForDevice(
                     device.id,
                     uuid,
@@ -153,11 +153,11 @@ const Rassberry = (props) => {
         // Handle errors
       });
   };
-  const scanAndConnect = async () => {
+  const scanAndConnect = async (deviceName) => {
     
-    // if(!deviceName){
-    //   return;
-    // }
+    if(!deviceName){
+      return;
+    }
     // if (Object.keys(device).length !== 0) {
     //   return;
     // }
