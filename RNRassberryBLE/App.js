@@ -36,7 +36,7 @@ const App: () => React$Node = () => {
     setDeviceName(text);
     setActiivity(true);
     setText('');
-    setDisplay(true);
+    // setDisplay(true);
   };
 
   const sendToBLE = () => {
@@ -46,7 +46,7 @@ const App: () => React$Node = () => {
   useEffect(() => {
     EventRegister.addEventListener('rassberry_connect', () => {
       console.log('Show Activity')
-      showActivity(false);
+      setActiivity(false);
       setDisplay(true);
     });
 
