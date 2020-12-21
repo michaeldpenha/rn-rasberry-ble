@@ -5,18 +5,19 @@ import {EventRegister} from 'react-native-event-listeners';
 import {BleManager} from 'react-native-ble-plx';
 
 const Rassberry = (props) => {
+  const {deviceName} = props;
   const instance = new BleManager();
 
   const [writeCharacteristic, setWriteCharacteristic] = useState({});
   const [caharacteristicId, setCharacteristicId] = useState('');
   const [serviceId, setServiceID] = useState('');
-  const [deviceName, setDeviceScan] = useState('');
+  // const [deviceName, setDeviceScan] = useState('');
   // const [device, setDeviceConnection] = useState({});
 
   useEffect(() => {
     EventRegister.addEventListener('connect_device', (name) => {
       // scanAndConnect(name);
-      setDeviceScan(name);
+      // setDeviceScan(name);
     });
     (async function () {
       if (Platform.OS === 'ios') {

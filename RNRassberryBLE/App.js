@@ -52,7 +52,9 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Rassberry />
+      {
+      !!text && <Rassberry deviceName={text}/>
+      }
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
