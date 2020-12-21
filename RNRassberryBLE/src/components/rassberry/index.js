@@ -169,6 +169,7 @@ const Rassberry = (props) => {
       }
       console.log('Rasberry BLE Connection', deviceName);
       console.log('device', device?.name);
+      console.log('devicestatus', device?.name?.replace(/\s/g, '').includes(deviceName.trim()))
 
       if (device?.name?.replace(/\s/g, '').includes(deviceName.trim())) {
         instance.stopDeviceScan();
